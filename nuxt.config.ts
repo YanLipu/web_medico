@@ -12,6 +12,9 @@ export default defineNuxtConfig({
       ]
     }
   },
+  plugins: [
+    '~/plugins/api.ts',
+  ],
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   build: {
@@ -25,6 +28,7 @@ export default defineNuxtConfig({
       })
     },
     '@pinia/nuxt',
+    // '@nuxtjs/leaflet'
   ],
   vite: {
     vue: {
@@ -35,9 +39,6 @@ export default defineNuxtConfig({
   },
   css: ['@mdi/font/css/materialdesignicons.min.css'],
   ssr: false, // Set to false for SPA mode
-  router: {
-    middleware: ['auth']
-  },
   runtimeConfig: {
     public: {
       apiBase: process.env.API_BASE_URL
