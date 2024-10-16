@@ -28,7 +28,15 @@ import GenericForm from '~/components/GenericForm.vue'
 const authStore = useAuthStore()
 const router = useRouter()
 
-const loginFields = [
+interface FormField {
+  name: string;
+  label: string;
+  type: 'text' | 'password' | 'email' | 'select' | 'checkbox';
+  required: boolean;
+  rules: ((v: string) => true | string)[];
+}
+
+const loginFields: FormField[] = [
   {
     name: 'email',
     label: 'Email',
@@ -54,7 +62,7 @@ const loginFields = [
 const handleLogin = async (formData: { email: string; password: string }) => {
   try {
     await authStore.login(formData.email, formData.password)
-    router.push('/')
+    router.push('/dashboard')
   } catch (err) {
     if (err instanceof Error) {
       throw new Error('Login failed. Please check your credentials and try again.')
