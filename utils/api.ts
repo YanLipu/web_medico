@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { useToast } from '~/composables/useToast'
+import { useRuntimeConfig } from '#app'
+
+const config = useRuntimeConfig()
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/',
+  baseURL: config.public.apiBase as string,
   headers: {
     'Content-Type': 'application/json',
   },
